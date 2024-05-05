@@ -6,18 +6,18 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 module.exports = () => {
   return {
     mode: 'development',
-    context: path.resolve(__dirname), // Set to the current directory
+    context: path.resolve(__dirname), 
     entry: {
       main: './src/js/index.js',
       install: './src/js/install.js'
     },
     output: {
       filename: '[name].bundle.js',
-      path: path.resolve(__dirname, 'dist'), // Output in the dist folder under client
+      path: path.resolve(__dirname, 'dist'), 
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html', // Correct path to your HTML template
+        template: './index.html', 
       }),
       new WebpackPwaManifest({
         name: 'Just Another Text Editor',
@@ -27,14 +27,14 @@ module.exports = () => {
         crossorigin: 'use-credentials',
         icons: [
           {
-            src: path.resolve(__dirname, 'src/images/icon.png'),
+            src: path.resolve(__dirname, 'src/images/logo.png'),
             sizes: [96, 128, 192, 256, 384, 512],
             destination: path.join('assets', 'icons'),
           },
         ],
       }),
       new InjectManifest({
-        swSrc: path.resolve(__dirname, 'src/js/sw.js'),
+        swSrc: path.resolve(__dirname, './src-sw.js'),
         swDest: 'service-worker.js',
       })
     ],
