@@ -6,35 +6,36 @@ const { InjectManifest } = require('workbox-webpack-plugin');
 module.exports = () => {
   return {
     mode: 'development',
-    context: path.resolve(__dirname), 
+    context: path.resolve(__dirname, 'src'), // Ensure context is set to 'src' directory
     entry: {
-      main: './src/js/index.js',
-      install: './src/js/install.js'
+      main: './js/index.js',
+      install: './js/install.js'
     },
     output: {
       filename: '[name].bundle.js',
-      path: path.resolve(__dirname, 'dist'), 
+      path: path.resolve(__dirname, 'dist'),
+      publicPath: '/', // Ensure assets are served correctly in dev server
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './index.html', 
+        template: '../index.html', // Assuming index.html is inside the 'src' folder
       }),
       new WebpackPwaManifest({
         name: 'Just Another Text Editor',
         short_name: 'JATE',
         description: 'A simple text editor',
         background_color: '#ffffff',
-        crossorigin: 'use-credentials',
+        crossorigin: 'use-credentials', // This can be 'anonymous' or 'use-credentials'
         icons: [
           {
-            src: path.resolve(__dirname, 'src/images/logo.png'),
+            src: path.resolve('src/images/logo.png'), // Assuming the path from context
             sizes: [96, 128, 192, 256, 384, 512],
             destination: path.join('assets', 'icons'),
           },
         ],
       }),
       new InjectManifest({
-        swSrc: path.resolve(__dirname, './src-sw.js'),
+        swSrc: path.resolve('./src-sw.js'), // Correct path relative to 'src'
         swDest: 'service-worker.js',
       })
     ],
@@ -52,6 +53,14 @@ module.exports = () => {
             options: {
               presets: ['@babel/preset-env']
             }
+          }
+        },
+        // Handling images
+        {
+          test: /\.(png|svg|jpg|jpeg|gif)$/i,
+          type: 'asset/resource',
+          generator: {
+            filename: 'assets/icons/[name][ext][query]'  // Output images to 'assets/icons' folder
           }
         }
       ],
