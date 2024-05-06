@@ -1,5 +1,5 @@
 const { offlineFallback, warmStrategyCache } = require('workbox-recipes');
-const { precacheAndRoute } = require('workbox-precaching/precaheAndRoute');
+const { precacheAndRoute } = require('workbox-precaching/precacheAndRoute');
 const { CacheFirst } = require('workbox-strategies');
 const { registerRoute } = require('workbox-routing');
 const { CacheableResponsePlugin } = require('workbox-cacheable-response');
@@ -19,7 +19,6 @@ const pageCache = new CacheFirst({
   ],
 });
 
-
 warmStrategyCache({
   urls: ['/index.html', '/'],
   strategy: pageCache,
@@ -27,7 +26,6 @@ warmStrategyCache({
 
 registerRoute(({ request }) => request.mode === 'navigate', pageCache);
 
-// TODO: Implement asset caching
 const assetCache = new CacheFirst({
   cacheName: 'asset-cache',
   plugins: [
@@ -42,12 +40,7 @@ const assetCache = new CacheFirst({
 
 offlineFallback({
   pageFallback: '/index.html',
-  // networkFallback: {
-  //   // TODO: Add a URL to your fallback service worker
-  //   url: '/',
-//  },
 });
-
 
 registerRoute(
   /\.(?:css|js|png|gif|jpg|jpeg|svg)$/,
