@@ -21,10 +21,13 @@ module.exports = () => {
         template: '../index.html', // Assuming index.html is inside the 'src' folder
       }),
       new WebpackPwaManifest({
+        fingerprints: false,
         name: 'Just Another Text Editor',
         short_name: 'JATE',
         description: 'A simple text editor',
         background_color: '#ffffff',
+        start_url: '/',
+        publicPath: '/',
         crossorigin: 'use-credentials', // This can be 'anonymous' or 'use-credentials'
         icons: [
           {
@@ -36,7 +39,7 @@ module.exports = () => {
       }),
       new InjectManifest({
         swSrc: path.resolve('./src-sw.js'), // Correct path relative to 'src'
-        swDest: 'service-worker.js',
+        swDest: 'src-sw.js',
       })
     ],
     module: {
