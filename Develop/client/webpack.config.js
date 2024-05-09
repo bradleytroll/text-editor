@@ -26,17 +26,21 @@ module.exports = () => {
         swSrc: './src-sw.js',
         swDest: './sw.js'
       }),
+      console.log('Resolved icon path:', path.resolve('src/assets/icon.png')),
+
       new WebpackPwaManifest({
         fingerprints: false,
-        inject: true,
+        //inject: true,
         name: 'JATE',
         short_name: 'JATE',
         description: 'A simple note taking app',
         background_color: '#ffffff',
         theme_color: '#ffffff',
+        start_url: '/',
+        publicPath: '/',
         icons: [
           {
-            src: path.resolve('src/assets/icon.png'),
+            src: path.resolve('src/images/logo.png'),
             sizes: [96, 128, 192, 256, 384, 512],
             destination: path.join('assets', 'icons'),
           }
