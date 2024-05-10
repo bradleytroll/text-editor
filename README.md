@@ -13,6 +13,9 @@
 ## Description
 This project is a simple web-based text editor designed to allow users to write and save text documents in their browser. It features basic functionalities such as creating new files, saving, and loading previous sessions.
 
+<img src="./Develop/client/src/assets/JATE browser.png" alt="JATE" width="600" height="auto">
+<img src="./Develop/client/src/assets/JATE.png" alt="JATE" width="600" height="auto">
+
 ## Installation
 To install the text editor, follow these steps:
 1. Clone the repository:
@@ -68,7 +71,7 @@ Contributions are welcome! If you would like to contribute to the project, pleas
 6. Submit a pull request.
 
 ## GitHub Repo
-You can find the repository at [GitHub]().
+You can find the repository at [GitHub](https://github.com/bradleytroll/text-editor).
 
 ## Deployed Application
 Access the deployed text editor at [this link]().
