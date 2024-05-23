@@ -74,4 +74,4 @@ Contributions are welcome! If you would like to contribute to the project, pleas
 You can find the repository at [GitHub](https://github.com/bradleytroll/text-editor).
 
 ## Deployed Application
-Access the deployed text editor at [this link]().
+Access the deployed text editor at [this link](https://book-search-engine-0v0y.onrender.com).
